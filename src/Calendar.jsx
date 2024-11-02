@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import plLocale from '@fullcalendar/core/locales/pl';
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import iCalendarPlugin from '@fullcalendar/icalendar';
-import { icalEvents } from './icalEvents';
+import { icalEvents } from './private/icalEvents';
 import rrule from "@fullcalendar/rrule";
 
 export default function Calendar({handleEventRecieve}) {
