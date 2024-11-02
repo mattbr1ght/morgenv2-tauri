@@ -5,6 +5,7 @@ import plLocale from '@fullcalendar/core/locales/pl';
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import iCalendarPlugin from '@fullcalendar/icalendar';
 import { icalEvents } from './private/icalEvents';
+import listPlugin from '@fullcalendar/list';
 import rrule from "@fullcalendar/rrule";
 
 export default function Calendar({handleEventRecieve, handleEventDragStop}) {
@@ -14,7 +15,7 @@ export default function Calendar({handleEventRecieve, handleEventDragStop}) {
 
   return (
     <FullCalendar
-      plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, iCalendarPlugin]}
+      plugins={[ listPlugin, dayGridPlugin, timeGridPlugin, interactionPlugin, iCalendarPlugin]}
       locale={plLocale}
       weekNumbers={true}
       nowIndicator={true}
@@ -51,7 +52,7 @@ export default function Calendar({handleEventRecieve, handleEventDragStop}) {
       headerToolbar={{
         start: 'title',
         center: '',
-        end: 'prev today next dayGridMonth,timeGridWeek,timeGridDay,dayGridFourDay'
+        end: 'prev today next dayGridMonth,timeGridWeek,timeGridDay,dayGridFourDay,listMonth,listDay'
       }}
       titleFormat={{ 
         year: 'numeric',
