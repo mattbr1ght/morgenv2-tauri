@@ -23,7 +23,7 @@ const ExternalEvent = memo(({ event }) => {
   return (
     <div
       ref={elRef}
-      className="fc-event fc-h-event mb-1 fc-daygrid-event fc-daygrid-block-event p-2"
+      className="fc-event fc-h-event mb-1 fc-daygrid-event fc-daygrid-block-event p-2 my-item"
       title={event.title}
       style={{
         backgroundColor: event.color,
@@ -108,6 +108,28 @@ function App() {
         });
       };
 
+    const handleEventDragStop = (info) => {
+      console.log("Drag stop detected", info);
+      const event = info.event;
+      const taskListArea = document.getElementById("external-events"); // your task list div
+      const { clientX, clientY } = info.jsEvent;
+      console.log("event drag stopped:", event, clientX, clientY);
+
+      // Check if the dropped position is within the task list area
+      if (taskListArea.contains(info.jsEvent.target)) {
+        // Remove event from FullCalendar
+        event.remove();
+
+        // Optionally, update your app state to add the task back to the task list
+        setState((state) => {
+          return {
+            ...state,
+            externalEvents: state.externalEvents.concat({ id: event.id, title: event.title, color: event.backgroundColor, custom: event.custom })
+          };
+        });
+      }
+    };
+
     async function greet() {
         setGreetMsg(await invoke("greet", { name }));
     }
@@ -123,14 +145,14 @@ function App() {
                 value="add external event"
               />
             </div>
-            <div id="external-events">
+            <div id="external-events" style={{ width: "100%", height: "100vh"}}>
               {state.externalEvents.map((event) => (
                 <ExternalEvent key={event.id} event={event} />
               ))}
             </div>
         </div>
         <div style={{ float: "left", width: "75%" }}>
-            <Calendar eventReceive={handleEventReceive}/>
+            <Calendar eventReceive={handleEventReceive} handleEventDragStop={handleEventDragStop}/>
         </div>
     </main>
     );

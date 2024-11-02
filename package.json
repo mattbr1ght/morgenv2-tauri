@@ -20,6 +20,8 @@
     "@fullcalendar/timegrid": "^6.1.15",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-shell": "^2",
+    "crossvent": "^1.5.5",
+    "custom-event-js": "^1.0.3",
     "dragula": "^3.7.3",
     "ical.js": "^1.5.0",
     "react": "^18.2.0",

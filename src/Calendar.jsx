@@ -7,7 +7,7 @@ import iCalendarPlugin from '@fullcalendar/icalendar';
 import { icalEvents } from './private/icalEvents';
 import rrule from "@fullcalendar/rrule";
 
-export default function Calendar({handleEventRecieve}) {
+export default function Calendar({handleEventRecieve, handleEventDragStop}) {
   const handleDateClick = (arg) => {
     alert(arg.dateStr)
   }
@@ -59,6 +59,7 @@ export default function Calendar({handleEventRecieve}) {
       }}
       eventSources={[icalEvents]}
       eventReceive={handleEventRecieve}
+      eventDragStop={handleEventDragStop}
       drop={(info) => {info.draggedEl.parentNode.removeChild(info.draggedEl)}}
     />
   )
